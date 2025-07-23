@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGI Feel - The Planetary Intelligence Revolution</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(ellipse at center, #001122 0%, #000000 70%);
+            overflow: hidden;
+        }
+
+        .earth-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .earth {
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            position: relative;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/9/97/The_Earth_seen_from_Apollo_17.jpg') no-repeat center;
+            background-size: cover;
+            animation: earthRotate 60s linear infinite;
+            filter: drop-shadow(0 0 80px rgba(59, 130, 246, 0.4));
+            box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5); /* Inner shadow for depth */
+        }
+
+        .earth::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: url('https://visibleearth.nasa.gov/images/57747/blue-marble-clouds/57747w') no-repeat center;
+            background-size: cover;
+            opacity: 0.4;
+            animation: cloudRotate 70s linear infinite; /* Slower cloud rotation */
+            mix-blend-mode: screen; /* Natural cloud blending */
+        }
+
+        .earth::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: calc(100% + 20px);
+            height: calc(100% + 20px);
+            border-radius: 50%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(135, 206, 235, 0.4) 0%, transparent 50%), /* Atmospheric scattering */
+                radial-gradient(circle 50px at 20% 30%, rgba(255, 255, 255, 0.3) 0%, transparent 50%), /* Specular highlight */
+                linear-gradient(135deg, transparent 0%, transparent 50%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 0.9) 100%); /* Terminator line */
+            box-shadow: 0 0 20px rgba(135, 206, 235, 0.6); /* Atmospheric glow */
+        }
+
+        @keyframes earthRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes cloudRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+                radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 90px 40px, #ffffff, transparent),
+                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 160px 30px, #ffffff, transparent),
+                radial-gradient(1px 1px at 200px 90px, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 240px 50px, #ffffff, transparent),
+                radial-gradient(1px 1px at 280px 120px, rgba(255,255,255,0.8), transparent);
+            background-repeat: repeat;
+            background-size: 300px 150px;
+            animation: twinkle 4s ease-in-out infinite alternate;
+            opacity: 0.6;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.4; }
+            100% { opacity: 0.8; }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 700px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 4.5rem;
+            font-weight: 100;
+            letter-spacing: 0.2em;
+            margin-bottom: 2rem;
+            color: #ffffff;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.8;
+            font-weight: 200;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            text-decoration: none;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-weight: 200;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(20px);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .features {
+            padding: 10rem 2rem;
+            background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+            position: relative;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .features-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 8rem;
+            font-weight: 100;
+            opacity: 0.9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 6rem;
+        }
+
+        .feature-card {
+            text-align: center;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            display: block;
+            opacity: 0.7;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            color: #ffffff;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            opacity: 0.6;
+            line-height: 1.7;
+            font-weight: 200;
+        }
+
+        .planetary-section {
+            padding: 10rem 2rem;
+            background: radial-gradient(ellipse at center, #001122 0%, #000000 70%);
+            text-align: center;
+            position: relative;
+        }
+
+        .planetary-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .planetary-title {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            font-weight: 100;
+            opacity: 0.9;
+            line-height: 1.3;
+        }
+
+        .planetary-description {
+            font-size: 1.2rem;
+            opacity: 0.7;
+            font-weight: 200;
+            line-height: 1.8;
+        }
+
+        .footer {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: #000000;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+            opacity: 0.4;
+            font-weight: 200;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .earth {
+                width: 500px;
+                height: 500px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .earth {
+                width: 400px;
+                height: 400px;
+                background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/800px-The_Earth_seen_from_Apollo_17.jpg') no-repeat center;
+                background-size: cover;
+            }
+            .earth::before {
+                background: url('https://visibleearth.nasa.gov/images/57747/blue-marble-clouds/57747w/800px') no-repeat center;
+                background-size: cover;
+            }
+            .logo {
+                font-size: 3.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .earth {
+                width: 320px;
+                height: 320px;
+            }
+            .logo {
+                font-size: 2.8rem;
+            }
+            .tagline {
+                font-size: 1.1rem;
+            }
+            .planetary-title {
+                font-size: 2.2rem;
+            }
+            .features, .planetary-section {
+                padding: 6rem 2rem;
+            }
+            .features-grid {
+                gap: 4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .earth {
+                width: 250px;
+                height: 250px;
+                background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/The_Earth_seen_from_Apollo_17.jpg/600px-The_Earth_seen_from_Apollo_17.jpg') no-repeat center;
+                background-size: cover;
+            }
+            .earth::before {
+                background: url('https://visibleearth.nasa.gov/images/57747/blue-marble-clouds/57747w/600px') no-repeat center;
+                background-size: cover;
+            }
+            .logo {
+                font-size: 2.2rem;
+                letter-spacing: 0.1em;
+            }
+            .tagline {
+                font-size: 1rem;
+            }
+            .hero-content {
+                padding: 1rem;
+            }
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Parallax effect */
+        .parallax-element {
+            transition: transform 0.1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="stars"></div>
+        <div class="earth-container">
+            <div class="earth parallax-element"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="logo">AGI FEEL</h1>
+            <p class="tagline">Where artificial general intelligence meets planetary consciousness</p>
+            <a href="#features" class="cta-button">Explore the Future</a>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="features-container">
+            <h2 class="features-title">Planetary Intelligence</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🌍</span>
+                    <h3 class="feature-title">Earth Consciousness</h3>
+                    <p class="feature-description">AI systems that understand and work in harmony with Earth's natural processes, ecosystems, and the delicate balance of our planet.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3 class="feature-title">Collective Intelligence</h3>
+                    <p class="feature-description">Building AI that thinks beyond individual tasks, considering planetary-scale implications and global interconnectedness.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">✨</span>
+                    <h3 class="feature-title">Optimistic Future</h3>
+                    <p class="feature-description">Technology designed with unwavering optimism about humanity's potential and our planet's capacity for regeneration and growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="planetary-section">
+        <div class="planetary-content">
+            <h2 class="planetary-title">A New Era of Planetary Intelligence</h2>
+            <p class="planetary-description">
+                We stand at the intersection of artificial general intelligence and planetary awareness. 
+                AGI Feel represents technology that doesn't just compute—it understands the delicate 
+                balance of our world, the interconnectedness of all life, and the infinite potential of 
+                conscious intelligence working in harmony with Earth's natural systems.
+            </p>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>AGI Feel © 2025</p>
+        <p style="margin-top: 0.5rem;">agifeel.com</p>
+    </footer>
+
+    <script>
+        // Smooth parallax effect for Earth
+        document.addEventListener('mousemove', function(e) {
+            const earth = document.querySelector('.earth');
+            const mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            const mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+            
+            earth.style.transform = `translate(${mouseX * 15}px, ${mouseY * 15}px)`;
+        });
+
+        // Intersection Observer for feature cards animation
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('visible');
+                    }, index * 200);
+                }
+            });
+        }, observerOptions);
+
+        // Observe feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Smooth scroll for CTA button
+        document.querySelector('.cta-button').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('#features').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Add scroll-based parallax for Earth
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const earth = document.querySelector('.earth');
+            const rate = scrolled * -0.5;
+            
+            earth.style.transform = `translateY(${rate}px)`;
+        });
+    </script>
+</body>
+</html>
